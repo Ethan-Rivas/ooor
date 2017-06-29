@@ -46,7 +46,7 @@ module Ooor
       end
 
       def value_to_openerp(v)
-        if v == nil || v == ""
+        if v.nil? || v == ""
           return false
         elsif !v.is_a?(Integer) && !v.is_a?(Float) && v.is_a?(Numeric) && v.respond_to?(:to_f)
           return v.to_f
