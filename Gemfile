@@ -3,6 +3,11 @@ source "http://rubygems.org"
 gemspec
 
 gem "activemodel", "~> #{ENV["RAILS_VERSION"]}" if ENV["RAILS_VERSION"]
+if defined?(Rails::VERSION) && Rails::VERSION >= 5
+  gem 'activemodel-serializers-xml'
+  gem 'active_model_serializers'
+end
+
 
 group :test do
   gem 'rspec'

@@ -21,10 +21,12 @@ module Ooor
     attr_accessor :attributes, :id
 
     def to_json(options={})
+      require 'active_model_serializers' unless (defined?(Rails::VERSION) && Rails::VERSION < 5)
       super(include_root_in_json ? { :root => self.class.element_name }.merge(options) : options)
     end
 
     def to_xml(options={})
+      require 'activemodel-serializers-xml' unless (defined?(Rails::VERSION) && Rails::VERSION < 5)
       super({ :root => self.class.element_name }.merge(options))
     end
 
@@ -63,8 +65,8 @@ module Ooor
 
 
     include ActiveModel::Conversion
-    include ActiveModel::Serializers::JSON
-    include ActiveModel::Serializers::Xml
+    include ActiveModel::Serializers::JSON if defined?(ActiveModel::Serializers::JSON)
+    include ActiveModel::Serializers::Xml if defined?(ActiveModel::Serializers::Xml)
 
   end
 end
