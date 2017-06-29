@@ -107,8 +107,6 @@ module Ooor
         true
       elsif type == 'boolean'&& (value == 0 || value == "0")
         false
-      elsif value == false && type != 'boolean'
-        nil
       elsif (type == 'char' || type == 'text') && value == "" && @attributes[skey] == nil
         nil
       else
